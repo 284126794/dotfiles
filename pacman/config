@@ -17,6 +17,7 @@ sudo pacman-key --lsign-key "farseerfc@archlinux.org"
 #if the relector can be normally run
 reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 # else use the CERNET mirror
+# or just add it to the top after.
 sudo vim /etc/pacman.d/mirrorlist
 Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch
 sudo pacman -Syyu
