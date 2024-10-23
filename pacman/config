@@ -1,0 +1,22 @@
+# if the pacman cannot install the first 
+sudo pacman-key --init
+sudo pacman-key --populate
+
+# keyring-CERNET-CHINA
+sudo vim /etc/pacman.conf
+
+[archlinuxcn]
+Server = https://mirrors.cernet.edu.cn/archlinuxcn/$arch
+
+sudo pacman -Sy archlinux-keyring
+
+## if the archlinux-keyring broke
+sudo pacman-key --lsign-key "farseerfc@archlinux.org"
+
+## mirrorlist
+#if the relector can be normally run
+reflector --country China --age 24 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
+# else use the CERNET mirror
+sudo vim /etc/pacman.d/mirrorlist
+Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch
+sudo pacman -Syyu
